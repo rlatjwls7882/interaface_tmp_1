@@ -1,6 +1,7 @@
 package kr.kro.interface_web.controller;
 
 import kr.kro.interface_web.domain.Post;
+import kr.kro.interface_web.service.CategoryService;
 import kr.kro.interface_web.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
+    private final CategoryService categoryService;
 
     @GetMapping("/post")
     public String getPost(Long postId, Model model) {
+        System.out.println("postId = " + postId);
         try {
-             Post post = postService.getPost(postId);
-             model.addAttribute("post", post);
+            Post post = postService.getPost(postId);
+            System.out.println("post = " + post);
+            model.addAttribute("post", post);
+            model.addAttribute("categories", categoryService.getCategories());
         } catch (Exception e) {
             e.printStackTrace();
         }

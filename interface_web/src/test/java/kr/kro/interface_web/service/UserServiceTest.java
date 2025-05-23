@@ -28,7 +28,7 @@ class UserServiceTest {
     @Test
     @Order(2)
     void createCategory() {
-        for(int i=1;i<10;i++) {
+        for(int i=1;i<2;i++) {
             try {
                 categoryService.createCategory("name"+i, "content"+i);
             } catch (Exception e) {

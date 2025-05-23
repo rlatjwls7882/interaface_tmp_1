@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="index.css"> </head>
 <body>
     <header class="header">
-        <div class="logo">NAVER 카페 (클론)</div>
+        <button class="logo-button" onclick="index.html">Interface</button>
         <nav>
             <ul>
                 <li class="active"><a href="#">카페홈</a></li>
@@ -43,7 +43,7 @@
             <div class="category-title">게시판</div>
             <ul>
                 <li th:each="category : ${categories}">
-                    <a href="#" th:text="${category.name}"></a>
+                    <a href="#" th:text="${category.name}">카테고리 렌더링) 서버 구현 완료</a>
                 </li>
             </ul>
             <div class="category-title">MY</div>
@@ -57,13 +57,13 @@
         <main class="content-area">
             <section class="content-section" th:each="category : ${categories}">
                 <h2 class="section-title" th:text="${category.name}">
-                    <a href="#" class="more-link">더보기 +</a>
+                    <a href="#" class="more-link">더보기 + (아직 서버에서 안보임)</a>
                 </h2>
                 <div class="article-list">
                     <ul>
                         <li th:each="post : ${category.posts}">
-                            <a th:href="${'post?postId='+post.id}" th:text="${post.title}">제목 렌더링 안됨.</a>
-                            <span class="date" th:text="${post.upDate}">수정시간 렌더링 안됨.</span>
+                            <a th:href="${'post?postId='+post.id}" th:text="${post.title}">제목 렌더링) 서버 구현 완료</a>
+                            <span class="date" th:text="${post.upDate}">수정시간 렌더링) 서버 구현 완료</span>
                         </li>
                     </ul>
                 </div>
