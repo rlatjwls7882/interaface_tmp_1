@@ -14,4 +14,13 @@ public class UserController {
     public String hot() {
         return "board";
     }
+
+    @GetMapping("/study")
+    public String study() {
+        return "study";
+    }
+    @GetMapping("/library")
+    public String library() {
+        return "library";
+    }
 }

@@ -30,7 +30,7 @@
 
             <ul>
                 <li><a href="/">카페홈</a></li>
-                <li><a href="#">인기글</a></li>
+                <li><a href="/hot">인기글</a></li>
 
             </ul>
             
@@ -46,14 +46,14 @@
             <div class="write-container">
                 <h2>새 글 작성</h2>
                 <form class="write-form" action="post" method="post">
-<!--                    <label for="board-select">게시판 선택</label>-->
-<!--                    <select id="board-select" name="board">-->
-<!--                        <option name="categoryId" th:value="">자유 게시판</option>-->
-<!--                        <option value="notice">공지사항</option>-->
-<!--                        <option value="qna">질문 게시판</option>-->
-<!--                        <option value="suggestion">건의사항</option>-->
-<!--                        <option value="data">자료실</option>-->
-<!--                    </select>-->
+                    <label for="board-select">게시판 선택</label>
+                    <select id="board-select" name="board">
+                        <option name="categoryId" th:value="">자유 게시판</option>
+                        <option value="notice">공지사항</option>
+                        <option value="qna">질문 게시판</option>
+                        <option value="suggestion">건의사항</option>
+                        <option value="data">자료실</option>
+                    </select>
 
                     <label for="post-title">제목</label>
                     <input type="text" id="post-title" name="title" placeholder="제목을 입력해주세요." required>
