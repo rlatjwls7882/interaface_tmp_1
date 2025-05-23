@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 카페 스타일 메인 홈페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* (이전과 동일한 CSS 스타일) */
+        /* ==================== 전역 스타일 ==================== */
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif; /* 한글 폰트 우선 적용 */
+            margin: 0;
+            background-color: #f0f2f5; /* 네이버 카페와 유사한 밝은 배경색 */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================== 헤더 ==================== */
+        .header {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .header nav ul li {
+            margin-left: 25px;
+        }
+
+        .header nav ul li a {
+            color: #555;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .header nav ul li a:hover,
+        .header nav ul li.active a {
+            color: #03c75a; /* 네이버 포인트 색상 (녹색) */
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info .login-btn {
+            background-color: #03c75a; /* 네이버 녹색 버튼 */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .user-info .login-btn:hover {
+            background-color: #02b34a;
+        }
+
+        /* ==================== 메인 콘텐츠 래퍼 ==================== */
+        .main-wrapper {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* ==================== 좌측 메뉴바 ==================== */
+        .sidebar-left {
+            width: 220px;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+        }
+
+        .sidebar-left .profile-widget {
+            background-color: #e6f7ff; /* 파스텔 블루 배경 */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .sidebar-left .profile-widget .avatar {
+            width: 60px;
+            height: 60px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            overflow: hidden; /* 이미지 오버플로우 방지 */
+        }
+        .sidebar-left .profile-widget .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar-left .profile-widget .username {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-left .profile-widget .level {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .sidebar-left ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-left ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-left ul li a {
+            color: #555;
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-left ul li a:hover,
+        .sidebar-left ul li.active a {
+            background-color: #e6f7ff;
+            color: #007bff;
+        }
+
+        .sidebar-left .category-title {
+            font-size: 14px;
+            color: #888;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            padding: 0 10px;
+            font-weight: 500;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        /* ==================== 중앙 콘텐츠 영역 ==================== */
+        .content-area {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffffff;
+            display: grid;
+            grid-template-columns: 1fr; /* 단일 컬럼으로 배치 */
+            gap: 30px; /* 섹션 간 간격 */
+        }
+
+        .content-section {
+            background-color: #fefefe;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .section-title .more-link {
+            font-size: 14px;
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        .article-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-list ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        .article-list ul li:last-child {
+            border-bottom: none;
+        }
+
+        .article-list ul li a {
+            color: #555;
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 10px;
+        }
+
+        .article-list ul li .date {
+            font-size: 13px;
+            color: #999;
+            flex-shrink: 0;
+        }
+
+        /* ==================== 우측 사이드바 ==================== */
+        .sidebar-right {
+            width: 280px;
+            padding: 20px;
+            border-left: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .widget {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .widget h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .widget ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .widget ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 14px;
+        }
+
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+
+        .widget ul li a {
+            color: #555;
+            transition: color 0.2s ease;
+        }
+
+        .widget ul li a:hover {
+            color: #007bff;
+        }
+
+        .widget .board-button {
+            display: block;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px auto 0;
+            background-color: #e6f7ff;
+            color: #007bff;
+            border: 1px solid #cceeff;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .widget .board-button:hover {
+            background-color: #d1edff;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+
+        /* ==================== 푸터 ==================== */
+        .footer {
+            width: 100%;
+            padding: 20px;
+            background-color: #444; /* 약간 더 밝은 회색 */
+            color: #eee;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 30px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">NAVER 카페 (클론)</div>
+        <nav>
+            <ul>
+                <li class="active"><a href="#">카페홈</a></li>
+                <li><a href="#">게시판</a></li>
+                <li><a href="#">갤러리</a></li>
+                <li><a href="#">MY</a></li>
+                <li><a href="#">검색</a></li>
+            </ul>
+        </nav>
+        <div class="user-info">
+            안녕하세요, [사용자 이름] 님!
+            <a href="#" class="login-btn">로그인</a>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <aside class="sidebar-left">
+            <div class="profile-widget">
+                <div class="avatar">
+                    <img src="https://via.placeholder.com/60" alt="프로필 이미지">
+                </div>
+                <div class="username">[사용자 이름]</div>
+                <div class="level">Lv. 10 열심회원</div>
+            </div>
+
+            <ul>
+                <li class="active"><a href="#">카페홈</a></li>
+                <li><a href="#">인기글</a></li>
+                <li><a href="#">내소식</a></li>
+                <li><a href="#">채팅</a></li>
+            </ul>
+            <div class="category-title">게시판</div>
+            <ul>
+                <li><a href="#">자유 게시판</a></li>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">질문 게시판</a></li>
+                <li><a href="#">건의사항</a></li>
+                <li><a href="#">자료실</a></li>
+            </ul>
+            <div class="category-title">MY</div>
+            <ul>
+                <li><a href="#">내가 쓴 글</a></li>
+                <li><a href="#">내 댓글</a></li>
+                <li><a href="#">즐겨찾기</a></li>
+            </ul>
+        </aside>
+
+        <main class="content-area">
+            <section class="content-section">
+                <h2 class="section-title">
+                    공지사항
+                    <a href="#" class="more-link">더보기 +</a>
+                </h2>
+                <div class="article-list">
+                    <ul>
+                        <li><a href="post.html">[필독] 커뮤니티 이용 규칙 변경 안내입니다.</a> <span class="date">2025.05.23</span></li>
+                        <li><a href="post.html">시스템 정기 점검 안내 (5/25 01:00 ~ 03:00)</a> <span class="date">2025.05.22</span></li>
+                        <li><a href="post.html">새로운 게시판 '건의사항' 오픈 안내</a> <span class="date">2025.05.21</span></li>
+                        <li><a href="post.html">운영진 변경 및 인사드립니다.</a> <span class="date">2025.05.20</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">
+                    자유 게시판
+                    <a href="#" class="more-link">더보기 +</a>
+                </h2>
+                <div class="article-list">
+                    <ul>
+                        <li><a href="post.html">오늘 날씨 정말 좋네요! 다들 뭐하시나요?</a> <span class="date">2025.05.23</span></li>
+                        <li><a href="post.html">주말에 가볼만한 곳 추천 부탁드립니다.</a> <span class="date">2025.05.23</span></li>
+                        <li><a href="post.html">최근에 읽은 책 추천하고 싶어요.</a> <span class="date">2025.05.22</span></li>
+                        <li><a href="post.html">회원님들께 드리는 감사 인사!</a> <span class="date">2025.05.22</span></li>
+                        <li><a href="post.html">요즘 푹 빠져있는 드라마 공유합니다.</a> <span class="date">2025.05.21</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">
+                    질문 게시판
+                    <a href="#" class="more-link">더보기 +</a>
+                </h2>
+                <div class="article-list">
+                    <ul>
+                        <li><a href="post.html">[급구] 웹 개발 초보 질문입니다.</a> <span class="date">2025.05.23</span></li>
+                        <li><a href="post.html">CSS Flexbox 질문 좀 받아주세요.</a> <span class="date">2025.05.23</span></li>
+                        <li><a href="post.html">파이썬 기초 문법 오류 해결 부탁드립니다.</a> <span class="date">2025.05.22</span></li>
+                        <li><a href="post.html">데이터베이스 연동 관련해서 질문 있습니다.</a> <span class="date">2025.05.21</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title">
+                    건의사항
+                    <a href="#" class="more-link">더보기 +</a>
+                </h2>
+                <div class="article-list">
+                    <ul>
+                        <li><a href="post.html">게시판에 댓글 기능 추가 건의합니다.</a> <span class="date">2025.05.23</span></li>
+                        <li><a href="post.html">모바일 앱 개발은 언제쯤 될까요?</a> <span class="date">2025.05.22</span></li>
+                        <li><a href="post.html">사이트 디자인 개선에 대한 건의사항</a> <span class="date">2025.05.22</span></li>
+                        <li><a href="post.html">새로운 이모티콘 추가해주세요!</a> <span class="date">2025.05.21</span></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h3>카페 활동</h3>
+                <a href="write.html" class="board-button">새 글 작성</a> <a href="#" class="board-button">내 카페</a>
+                <a href="#" class="board-button">이웃 카페</a>
+            </div>
+            <div class="widget">
+                <h3>최신 댓글</h3>
+                <ul>
+                    <li><a href="#">김** : 좋은 정보 감사합니다!</a></li>
+                    <li><a href="#">이** : 저도 동의합니다.</a></li>
+                    <li><a href="#">박** : 잘 보고 갑니다~</a></li>
+                    <li><a href="#">최** : 다음 글도 기대됩니다!</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>카페 정보</h3>
+                <ul>
+                    <li>회원수: 12,345명</li>
+                    <li>개설일: 2020.01.01</li>
+                    <li>운영자: [운영자명]</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 NAVER Café Clone. All Rights Reserved.
+    </footer>
+</body>
+</html>
