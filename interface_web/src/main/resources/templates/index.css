@@ -1,0 +1,330 @@
+
+/* ==================== 전역 스타일 ==================== */
+body {
+    font-family: 'Noto Sans KR', 'Poppins', sans-serif; /* 한글 폰트 우선 적용 */
+    margin: 0;
+    background-color: #f0f2f5; /* 네이버 카페와 유사한 밝은 배경색 */
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ==================== 헤더 ==================== */
+.header {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.header nav ul li {
+    margin-left: 25px;
+}
+
+.header nav ul li a {
+    color: #555;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.header nav ul li a:hover,
+.header nav ul li.active a {
+    color: #03c75a; /* 네이버 포인트 색상 (녹색) */
+}
+
+.user-info {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info .login-btn {
+    background-color: #03c75a; /* 네이버 녹색 버튼 */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.user-info .login-btn:hover {
+    background-color: #02b34a;
+}
+
+/* ==================== 메인 콘텐츠 래퍼 ==================== */
+.main-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* ==================== 좌측 메뉴바 ==================== */
+.sidebar-left {
+    width: 220px;
+    padding: 20px;
+    border-right: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+}
+
+.sidebar-left .profile-widget {
+    background-color: #e6f7ff; /* 파스텔 블루 배경 */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.sidebar-left .profile-widget .avatar {
+    width: 60px;
+    height: 60px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+    overflow: hidden; /* 이미지 오버플로우 방지 */
+}
+.sidebar-left .profile-widget .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-left .profile-widget .username {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.sidebar-left .profile-widget .level {
+    font-size: 13px;
+    color: #666;
+}
+
+.sidebar-left ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-left ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar-left ul li a {
+    color: #555;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-left ul li a:hover,
+.sidebar-left ul li.active a {
+    background-color: #e6f7ff;
+    color: #007bff;
+}
+
+.sidebar-left .category-title {
+    font-size: 14px;
+    color: #888;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-weight: 500;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+/* ==================== 중앙 콘텐츠 영역 ==================== */
+.content-area {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: 1fr; /* 단일 컬럼으로 배치 */
+    gap: 30px; /* 섹션 간 간격 */
+}
+
+.content-section {
+    background-color: #fefefe;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.section-title .more-link {
+    font-size: 14px;
+    color: #007bff;
+    font-weight: 500;
+}
+
+.article-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-list ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+}
+
+.article-list ul li:last-child {
+    border-bottom: none;
+}
+
+.article-list ul li a {
+    color: #555;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+}
+
+.article-list ul li .date {
+    font-size: 13px;
+    color: #999;
+    flex-shrink: 0;
+}
+
+/* ==================== 우측 사이드바 ==================== */
+.sidebar-right {
+    width: 280px;
+    padding: 20px;
+    border-left: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.widget {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+.widget h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+}
+
+.widget ul li:last-child {
+    border-bottom: none;
+}
+
+.widget ul li a {
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.widget ul li a:hover {
+    color: #007bff;
+}
+
+.widget .board-button {
+    display: block;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px auto 0;
+    background-color: #e6f7ff;
+    color: #007bff;
+    border: 1px solid #cceeff;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.widget .board-button:hover {
+    background-color: #d1edff;
+    color: #0056b3;
+    text-decoration: none;
+}
+
+
+/* ==================== 푸터 ==================== */
+.footer {
+    width: 100%;
+    padding: 20px;
+    background-color: #444; /* 약간 더 밝은 회색 */
+    color: #eee;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 30px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
