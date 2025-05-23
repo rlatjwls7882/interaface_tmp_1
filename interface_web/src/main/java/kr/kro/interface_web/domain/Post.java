@@ -33,6 +33,17 @@ public class Post {
     @JoinColumn(name = "category_id")
     private Category category; // 카테고리 관계 설정
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "upDate=" + upDate +
+                ", inDate=" + inDate +
+                ", content='" + content + '\'' +
+                ", title='" + title + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
     public Post() {}
     public Post(String title, String content, User user, Category category) {
         this.title = title;
