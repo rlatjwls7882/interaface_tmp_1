@@ -467,7 +467,7 @@
                 </div>
             </section>
 
-            <section class="content-section" th:each="category : ${categories}" style="display: none;">
+            <section class="content-section" th:each="category : ${categories}">
                 <h2 class="section-title" th:text="${category.name}">
                     <a href="#" class="more-link">더보기 + (아직 서버에서 안보임)</a>
                 </h2>
