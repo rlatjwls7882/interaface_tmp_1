@@ -19,6 +19,11 @@ app.post('/api/login', async (req, res) => {
 
     if (result.success) {
       res.json({ success: true, userInfo: result.userInfo || {}, message: result.message });
+      const res = await fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
     } else {
       res.status(401).json({ success: false, message: result.message });
     }
