@@ -23,8 +23,9 @@ a:hover {
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 요소들을 양 끝으로 정렬 */
     align-items: center;
+    gap: 20px; /* 로고, 검색창, 사용자 정보 사이의 기본 간격 */
 }
 
 /* 로고 버튼 스타일 */
@@ -42,13 +43,14 @@ a:hover {
     -moz-appearance: none;
     appearance: none;
     text-align: left;
+    flex-shrink: 0; /* 로고가 줄어들지 않도록 */
 }
 
 .logo-button:hover {
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     padding: 5px 10px;
-    margin: -5px -10px;
+    margin: -5px -10px; /* 호버 시 패딩으로 인한 위치 변경 보정 */
 }
 
 .header nav ul {
@@ -56,6 +58,7 @@ a:hover {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-shrink: 0;
 }
 
 .header nav ul li {
@@ -80,6 +83,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0; /* 사용자 정보가 줄어들지 않도록 */
 }
 
 .user-info .login-btn {
@@ -92,8 +96,92 @@ a:hover {
 }
 
 .user-info .login-btn:hover {
-    background-color: #1702b3;
+    background-color: #0056b3; /* 더 진한 파란색으로 변경 */
 }
+
+/* ==================== 검색창 스타일 ==================== */
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dadada; /* 기존 border 색상 */
+    border-radius: 20px; /* 둥근 모서리 */
+    padding: 5px 15px;
+    flex-grow: 1; /* 가로 공간을 최대한 차지하도록 설정 */
+    max-width: 500px; /* 검색창의 최대 너비 설정 */
+    height: 40px; /* 검색창 높이 */
+    box-sizing: border-box; /* padding이 너비에 포함되도록 */
+    background-color: #f8f8f8; /* 배경색을 약간 회색으로 */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-container:focus-within { /* 검색창 내부에 포커스 시 */
+    border-color: #1f25cd; /* 네이버 검색창처럼 녹색 테두리 */
+    box-shadow: 0 0 0 2px rgba(3, 199, 90, 0.2); /* 은은한 녹색 그림자 */
+    background-color: #ffffff; /* 배경색을 흰색으로 변경 */
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding: 0 5px;
+    color: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: transparent; /* 부모 컨테이너의 배경색을 따르도록 */
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 5px;
+    color: #999; /* 기본 아이콘 색상 */
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* 버튼이 줄어들지 않도록 */
+}
+
+.search-icon-button.help-icon {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 5px; /* 물음표와 드롭다운 아이콘 사이 간격 */
+}
+
+.search-icon-button.dropdown-icon {
+    font-size: 10px; /* 드롭다운 화살표 크기 조절 */
+    margin-left: -5px; /* 물음표와 약간 겹치게 하여 붙어 보이게 */
+    margin-right: 10px; /* 드롭다운과 돋보기 아이콘 사이 간격 */
+}
+
+.search-icon-button.search-main-icon {
+    background-color: #aedbe9; /* 돋보기 버튼 배경색 (네이버 초록색) */
+    border-radius: 50%; /* 완전한 원형 */
+    width: 30px; /* 너비 */
+    height: 30px; /* 높이 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.2s ease;
+}
+
+.search-icon-button.search-main-icon:hover {
+    background-color: #2746e1; /* 호버 시 약간 더 진한 녹색 */
+}
+
+.search-icon-button.search-main-icon svg {
+    color: #ffffff; /* 돋보기 아이콘 색상을 흰색으로 */
+    width: 18px; /* SVG 아이콘 크기 */
+    height: 18px;
+}
+
 
 /* ==================== 메인 콘텐츠 래퍼 ==================== */
 .main-wrapper {
@@ -113,6 +201,7 @@ a:hover {
     padding: 20px;
     border-right: 1px solid #e0e0e0;
     background-color: #f9f9f9;
+    flex-shrink: 0; /* 줄어들지 않도록 */
 }
 
 .sidebar-left .profile-widget {
@@ -271,6 +360,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    flex-shrink: 0; /* 줄어들지 않도록 */
 }
 
 .widget {
@@ -318,7 +408,7 @@ a:hover {
 
 .widget .board-button {
     display: block;
-    width: calc(100% - 20px);
+    width: calc(100% - 20px); /* 패딩을 고려하여 너비 조절 */
     padding: 10px;
     margin: 10px auto 0;
     background-color: #e6f7ff;

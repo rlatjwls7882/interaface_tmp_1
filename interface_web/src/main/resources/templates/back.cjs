@@ -18,12 +18,12 @@ app.post('/api/login', async (req, res) => {
     const result = await sejongLogin(email, password);
 
     if (result.success) {
-      res.json({ success: true, userInfo: result.userInfo || {}, message: result.message });
-      const res = await fetch('http://localhost:8080/login', {
+      const cpr = await fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
+      res.json({ success: true, userInfo: result.userInfo || {}, message: result.message });
     } else {
       res.status(401).json({ success: false, message: result.message });
     }
