@@ -519,15 +519,19 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .top-bar nav {
-                display: none; /* Hide top nav links on smaller screens */
-            }
-            .top-bar .greeting {
-                margin-left: auto; /* Push greeting to the right */
-            }
-             .top-bar {
-                padding: 10px 15px; /* Further reduce top bar padding on very small screens */
-            }
-        }
+       @media (max-width: 768px) {
+    .top-bar {
+        display: flex;            /* ✅ Flexbox 활성화 */
+        align-items: center;      /* ✅ 수직 정렬 */
+        padding: 10px 15px;
+    }
+
+    .top-bar nav {
+        display: none;
+    }
+
+    .top-bar .greeting {
+        margin-left: auto;        /* ✅ 오른쪽으로 이동 */
+    }
+}
     
