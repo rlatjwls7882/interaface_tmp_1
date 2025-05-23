@@ -1,243 +1,455 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interface - 자유게시판</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel ="stylesheet" href="board.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Reusing and slightly adapting styles from index.html for consistency */
+        .main-visual {
+            background: linear-gradient(to right, #e0f2f7, #c1e8f3);
+            color: #333;
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .main-visual h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #007bff;
+        }
+        .main-visual p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .main-visual .cta-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .main-visual .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .content-section {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title .more-link {
+            font-size: 0.7em;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .section-title .more-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Board-specific styles */
+        .board-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .board-list th, .board-list td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .board-list th {
+            background-color: #f8f8f8;
+            color: #555;
+            font-weight: 600;
+            font-size: 1em;
+        }
+        .board-list tr:hover {
+            background-color: #f5f5f5;
+        }
+        .board-list td a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.05em;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 400px; /* Limit title width */
+        }
+        .board-list td a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .board-list .post-meta {
+            font-size: 0.9em;
+            color: #888;
+        }
+        .board-list .post-meta span {
+            margin-left: 10px;
+        }
+        .board-list .post-meta .writer {
+            font-weight: 500;
+            color: #666;
+        }
+        .board-list .post-meta .date {
+            color: #999;
+        }
+        .board-list .post-meta .views::before { content: '조회 '; }
+        .board-list .post-meta .likes::before { content: '추천 '; }
+        .board-list .post-meta .comments::before { content: '댓글 '; }
+        .board-list .comments-count {
+            color: #007bff;
+            font-weight: 500;
+            margin-left: 5px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 5px;
+        }
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #007bff;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .pagination a:hover {
+            background-color: #f0f8ff;
+            color: #0056b3;
+        }
+        .pagination .current-page {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+            font-weight: bold;
+        }
+        .pagination .current-page:hover {
+            background-color: #007bff; /* Keep color on hover for current page */
+            color: white;
+        }
+
+        /* Sidebar styles (from index.html, ensure they are also in index.css for consistency) */
+        .widget h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .widget ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .widget li {
+            margin-bottom: 8px;
+        }
+        .widget li a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+        .widget li a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .hot-keywords ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .hot-keywords li {
+            background-color: #e9f5ff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            color: #007bff;
+            transition: background-color 0.2s;
+        }
+        .hot-keywords li a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .hot-keywords li:hover {
+            background-color: #d0e7ff;
+        }
+        .youtube-channel .youtube-thumbnail {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .youtube-channel .youtube-thumbnail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .youtube-channel p {
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+        }
+        .board-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .board-button:hover {
+            background-color: #0056b3;
+        }
+        .event-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .event-button:hover {
+            background-color: #218838;
+        }
+
+        /* To correctly highlight "인기글" and "자유게시판" in sidebar */
+        .sidebar-left ul li a[href="board.html"] {
+            color: #007bff; /* Highlight color */
+            font-weight: bold;
+        }
+        .sidebar-left .category-title + ul li a[href="board.html"] {
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="top-bar">
-        <button class="logo-button" onclick="location.href='/'">Interface</button>
-        
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="원하는 코드, 스터디를 찾아보세요">
-            <button class="search-icon-button help-icon">?</button>
-            <button class="search-icon-button dropdown-icon">▼</button>
-            <button id="searchButton" class="search-icon-button search-main-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20px" height="20px">
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                </svg>
-            </button>
-        </div>
-        <div class="user-info">
-            안녕하세요, [사용자 이름] 님!
-            <a href="login" class="login-btn">로그인</a>
-        </div>
+<header class="header">
+    <button class="logo-button" onclick="location.href='/'">Interface</button>
+    <nav>
+        <ul>
+            <li><a href="/">카페홈</a></li>
+            <li><a href="board">인기글</a></li> <li><a href="study.html">스터디</a></li>
+            <li><a href="project">프로젝트</a></li>
+            <li><a href="library">자료실</a></li>
+        </ul>
+    </nav>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="원하는 코드, 스터디를 찾아보세요">
+        <button class="search-icon-button help-icon">?</button>
+        <button class="search-icon-button dropdown-icon">▼</button>
+        <button id="searchButton" class="search-icon-button search-main-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20px" height="20px">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+        </button>
     </div>
-
-    <div class="container">
-        <div class="main-layout">
-            <div class="lnb">
-                <div class="user-profile">
-                    <div class="profile-image">
-                         <img src="https://via.placeholder.com/60" alt="프로필 이미지">
-                    </div>
-                    <div class="user-info">
-                        <strong>[사용자 이름]</strong>
-                        <span>Lv. 10 열심회원</span>
-                    </div>
-                </div>
-
-                <div class="menu-section">
-                    <ul>
-                        <li><a href="/">카페홈</a></li>
-                        <li><a href="/hot">인기글</a></li>
-                    </ul>
-                </div>
-
-                <div class="menu-section">
-                    <h3>게시판</h3>
-                    <ul>
-                        <li><a href="/free" class="active">자유게시판</a></li> <li><a href="#">질문과 답변</a></li>
-                        <li><a href="/study">스터디 모집</a></li>
-                        <li><a href="/project">프로젝트 공유</a></li>
-                    </ul>
-                </div>
-                <div class="menu-section">
-                    <h3>MY</h3>
-                    <ul>
-                        <li><a href="#">내가 쓴 글</a></li>
-                        <li><a href="#">내 댓글</a></li>
-                        <li><a href="#">즐겨찾기</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="main-content">
-                <div class="header">
-                    <h1>자유게시판</h1>
-                    <p>자유롭게 코딩 관련 이야기나 일상을 공유해주세요!</p>
-                    <div class="sort-options">
-                        <span>정렬 기준:</span>
-                        <a href="#" class="active">최신순</a>
-                        <a href="#">조회수순</a>
-                        <a href="#">추천순</a>
-                        <a href="#">댓글순</a>
-                    </div>
-                </div>
-
-                <div class="post-list">
-                    <div class="post-item">
-                        <div class="post-thumbnail">
-                            <img src="https://via.placeholder.com/100x100?text=Java" alt="Java icon">
-                        </div>
-                        <div class="post-details">
-                            <h3 class="post-title"><a href="#">Java 백엔드 개발자 취업 준비 질문 드려요!</a></h3>
-                            <p class="post-snippet">최근 백엔드 개발에 흥미를 느끼고 Java를 공부 중인 학생입니다. 혹시 취업 준비 과정에서 어떤 부분을 더 깊게 파면 좋을지 조언해주실 분 계실까요?</p>
-                            <div class="post-meta">
-                                <span class="writer">코딩_병아리</span>
-                                <span class="date">2025.05.24</span>
-                                <span class="views">320</span>
-                                <span class="likes">15</span>
-                                <span class="comments">8</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item">
-                        <div class="post-thumbnail">
-                             <img src="https://via.placeholder.com/100x100?text=React" alt="React icon">
-                        </div>
-                        <div class="post-details">
-                            <h3 class="post-title"><a href="#">React Hooks 써보신 분들 체감 성능 차이 어떠세요?</a></h3>
-                            <p class="post-snippet">함수형 컴포넌트와 Hooks 위주로 개발하고 있는데, Class 컴포넌트에 비해 실제 성능 상 이점이 크게 느껴지는지 궁금합니다. 경험 공유 부탁드려요!</p>
-                            <div class="post-meta">
-                                <span class="writer">프론트_고민중</span>
-                                <span class="date">2025.05.24</span>
-                                <span class="views">280</span>
-                                <span class="likes">12</span>
-                                <span class="comments">5</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item">
-                        <div class="post-thumbnail">
-                             <img src="https://via.placeholder.com/100x100?text=Study" alt="Study icon">
-                        </div>
-                        <div class="post-details">
-                            <h3 class="post-title"><a href="#">이번 주말 알고리즘 스터디 오프라인 참가 후기</a></h3>
-                            <p class="post-snippet">지난 토요일 진행된 알고리즘 스터디에 처음 참여해봤는데, 다들 열정이 대단하셔서 좋은 자극이 되었습니다. 특히 백트래킹 설명이 귀에 쏙쏙 들어왔어요!</p>
-                            <div class="post-meta">
-                                <span class="writer">알고리즘_도전자</span>
-                                <span class="date">2025.05.23</span>
-                                <span class="views">410</span>
-                                <span class="likes">25</span>
-                                <span class="comments">10</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item">
-                        <div class="post-thumbnail">
-                             <img src="https://via.placeholder.com/100x100?text=Error" alt="Error icon">
-                        </div>
-                        <div class="post-details">
-                            <h3 class="post-title"><a href="#">[질문] Python TypeError: 'int' object is not callable 에러 해결법...</a></h3>
-                            <p class="post-snippet">새로 만든 함수에서 계속 저 에러가 뜨는데, 아무리 찾아봐도 원인을 모르겠어요. 혹시 경험 있으신 분 계실까요? 코드 일부 첨부합니다...</p>
-                            <div class="post-meta">
-                                <span class="writer">파이썬_초보</span>
-                                <span class="date">2025.05.23</span>
-                                <span class="views">180</span>
-                                <span class="likes">5</span>
-                                <span class="comments">3</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item">
-                        <div class="post-thumbnail">
-                             <img src="https://via.placeholder.com/100x100?text=Project" alt="Project icon">
-                        </div>
-                        <div class="post-details">
-                            <h3 class="post-title"><a href="#">사이드 프로젝트 팀원 모집합니다! (React, Spring)</a></h3>
-                            <p class="post-snippet">아이디어는 있는데 혼자 하기 어려워서 React, Spring 백엔드 개발자 1분씩 추가로 모십니다! 관심 있으신 분은 쪽지 주세요!</p>
-                            <div class="post-meta">
-                                <span class="writer">아이디어_뱅크</span>
-                                <span class="date">2025.05.22</span>
-                                <span class="views">550</span>
-                                <span class="likes">30</span>
-                                <span class="comments">12</span>
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="post-item">
-                        <div class="post-thumbnail">
-                             <img src="https://via.placeholder.com/100x100?text=Career" alt="Career icon">
-                        </div>
-                        <div class="post-details">
-                            <h3 class="post-title"><a href="#">개발자 로드맵 고민입니다.. 프론트 vs 백엔드</a></h3>
-                            <p class="post-snippet">이제 막 개발 공부를 시작했는데, 프론트엔드와 백엔드 둘 다 매력적이라 진로를 결정하기 어렵네요. 선배님들의 조언 부탁드립니다!</p>
-                            <div class="post-meta">
-                                <span class="writer">진로_방황자</span>
-                                <span class="date">2025.05.22</span>
-                                <span class="views">600</span>
-                                <span class="likes">40</span>
-                                <span class="comments">18</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pagination">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <span>...</span>
-                    <a href="#">다음</a>
-                </div>
-            </div>
-
-            <div class="right-sidebar">
-                <div class="section activity-buttons">
-                    <h3>동아리 활동</h3>
-                    <button class="write-post-button" onclick="location.href='/write'">새 글 작성</button>
-                    <button class="event-button" onclick="location.href='/events'">다가오는 스터디/이벤트</button>
-                </div>
-                <div class="section hot-keywords">
-                    <h3>인기 검색어</h3>
-                    <ul>
-                        <li><a href="#">#자바스크립트</a></li>
-                        <li><a href="#">#스프링부트</a></li>
-                        <li><a href="#">#알고리즘</a></li>
-                        <li><a href="#">#코딩테스트</a></li>
-                        <li><a href="#">#리액트</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="user-info">
+        안녕하세요, [사용자 이름] 님!
+        <a href="login" class="login-btn">로그인</a>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const searchButton = document.getElementById('searchButton');
+</header>
 
-            function performSearch() {
-                const query = searchInput.value.trim(); // 검색어 앞뒤 공백 제거
+<div class="main-wrapper">
+    <aside class="sidebar-left">
+        <div class="profile-widget">
+            <div class="avatar">
+                <img src="https://via.placeholder.com/60" alt="프로필 이미지">
+            </div>
+            <div class="username">[사용자 이름]</div>
+            <div class="level">Lv. 10 열심회원</div>
+        </div>
 
-                if (query) {
-                    // 실제 서버로 검색 요청을 보냅니다.
-                    // 이 예시에서는 쿼리 파라미터로 검색 페이지로 이동합니다.
-                    window.location.href = `/search?query=${encodeURIComponent(query)}`;
-                } else {
-                    alert('검색어를 입력해주세요.');
-                }
+        <ul>
+            <li><a href="/">카페홈</a></li>
+            <li class="active"><a href="hot">인기글</a></li> <li><a href="study">스터디</a></li>
+            <li><a href="project">프로젝트</a></li>
+            <li><a href="library">자료실</a></li>
+        </ul>
+        <div class="category-title">게시판</div>
+        <ul>
+            <li class="active"><a href="hot">자유게시판</a></li> <li><a href="#">질문과 답변</a></li>
+            <li><a href="study">스터디 모집</a></li>
+            <li><a href="project">프로젝트 공유</a></li>
+            <li><a href="#">코드 리뷰</a></li>
+        </ul>
+        <div class="category-title">MY</div>
+        <ul>
+            <li><a href="#">내가 쓴 글</a></li>
+            <li><a href="#">내 댓글</a></li>
+            <li><a href="#">즐겨찾기</a></li>
+        </ul>
+    </aside>
+
+    <main class="content-area">
+        <section class="main-visual">
+            <h1>Interface 자유게시판</h1>
+            <p>자유롭게 소통하고 정보를 공유하는 공간입니다.</p>
+            <a href="write" class="cta-button">새 글 작성</a>
+        </section>
+
+        <section class="content-section board-posts">
+            <h2 class="section-title">전체 글</h2>
+            <table class="board-list">
+                <thead>
+                <tr>
+                    <th style="width: 5%;">번호</th>
+                    <th style="width: 55%;">제목</th>
+                    <th style="width: 15%;">글쓴이</th>
+                    <th style="width: 15%;">작성일</th>
+                    <th style="width: 10%;">조회</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>5</td>
+                    <td><a href="#">스프링 부트 3.x에서 JUnit 5 테스트 설정 팁</a> <span class="comments-count">[3]</span></td>
+                    <td>백엔드_주니어</td>
+                    <td>2025.05.24</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><a href="#">프론트엔드 최신 동향: WebAssembly와 그 활용</a></td>
+                    <td>프론트_미래</td>
+                    <td>2025.05.24</td>
+                    <td>210</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><a href="#">클린 코드 작성에 대한 개인적인 고민과 경험 공유합니다.</a> <span class="comments-count">[7]</span></td>
+                    <td>코드_장인</td>
+                    <td>2025.05.23</td>
+                    <td>340</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><a href="#">React와 Vue.js, 어떤 프레임워크가 더 적합할까요?</a> <span class="comments-count">[12]</span></td>
+                    <td>개발_고민러</td>
+                    <td>2025.05.22</td>
+                    <td>480</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><a href="#">GitHub Actions를 이용한 CI/CD 파이프라인 구축</a></td>
+                    <td>데브옵스_맨</td>
+                    <td>2025.05.21</td>
+                    <td>600</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <a href="#">이전</a>
+                <a href="#" class="current-page">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">다음</a>
+            </div>
+        </section>
+    </main>
+
+    <aside class="sidebar-right">
+        <div class="widget activity-buttons">
+            <h3>동아리 활동</h3>
+            <a href="write.html" class="board-button">새 글 작성</a>
+            <a href="/events" class="event-button">다가오는 스터디/이벤트</a>
+        </div>
+        <div class="widget notice-board-sidebar">
+            <h3>동아리 공지</h3>
+            <ul>
+                <li><a href="#">신입 회원 환영회 개최 안내</a></li>
+                <li><a href="#">정기 세미나 강연자 모집</a></li>
+                <li><a href="#">회원 전용 스터디룸 예약</a></li>
+            </ul>
+        </div>
+        <div class="widget hot-keywords">
+            <h3>인기 검색어</h3>
+            <ul>
+                <li><a href="#">#파이썬</a></li>
+                <li><a href="#">#AI</a></li>
+                <li><a href="#">#프론트엔드</a></li>
+                <li><a href="#">#백엔드</a></li>
+                <li><a href="#">#알고리즘</a></li>
+                <li><a href="#">#클린코드</a></li>
+            </ul>
+        </div>
+        <div class="widget youtube-channel">
+            <h3>Interface YouTube</h3>
+            <div class="youtube-thumbnail">
+                <a href="https://www.youtube.com/channel/YOUR_YOUTUBE_CHANNEL_ID" target="_blank">
+                    <img src="https://via.placeholder.com/250x150?text=Interface+YouTube" alt="Interface YouTube Channel">
+                </a>
+            </div>
+            <p>동아리 세미나 영상, 프로젝트 발표 등 다양한 콘텐츠를 만나보세요!</p>
+        </div>
+    </aside>
+</div>
+
+<footer class="footer">
+    © 2025 Interface. All Rights Reserved.
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+
+            if (query) {
+                window.location.href = `/search?query=${encodeURIComponent(query)}`;
+            } else {
+                alert('검색어를 입력해주세요.');
             }
+        }
 
-            // 검색 버튼 클릭 이벤트
-            searchButton.addEventListener('click', performSearch);
-
-            // 검색 입력창에서 Enter 키 누를 시 검색
-            searchInput.addEventListener('keypress', function(event) {
-                if (event.key === 'Enter') {
-                    performSearch();
-                }
-            });
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
