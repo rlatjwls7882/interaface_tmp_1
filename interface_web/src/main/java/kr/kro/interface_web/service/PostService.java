@@ -25,9 +25,10 @@ public class PostService {
         return postRepository.findById(postId).orElse(null);
     }
 
-    public void updatePost(Long postId, String title, String content) throws Exception {
+    public void updatePost(Long postId, String title, String content, long categoryId) throws Exception {
         Post post = postRepository.findById(postId).orElse(null);
-        post.update(title, content);
+        Category category = categoryService.getCategory(categoryId);
+        post.update(title, content, category);
         postRepository.save(post);
     }
 

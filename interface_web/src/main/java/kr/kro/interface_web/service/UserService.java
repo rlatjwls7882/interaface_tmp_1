@@ -11,7 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userRepository;
 
-    public void registerUser(User user) {
+    public void createUser(String id, String name, String content) {
+        User user = new User(id, name, content);
         userRepository.save(user);
     }
 

@@ -37,9 +37,9 @@ public class PostController {
     }
 
     @PatchMapping("/post")
-    public String updatePost(Long postId, String title, String content) {
+    public String updatePost(Long postId, String title, String content, long categoryId) {
         try {
-            postService.updatePost(postId, title, content);
+            postService.updatePost(postId, title, content, categoryId);
         } catch (Exception e) {
             e.printStackTrace();
         }

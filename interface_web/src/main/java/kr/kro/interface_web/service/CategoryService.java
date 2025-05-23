@@ -1,6 +1,7 @@
 package kr.kro.interface_web.service;
 
 import kr.kro.interface_web.domain.Category;
+import kr.kro.interface_web.domain.Post;
 import kr.kro.interface_web.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
