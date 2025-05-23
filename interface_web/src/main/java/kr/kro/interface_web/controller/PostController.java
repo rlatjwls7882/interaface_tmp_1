@@ -1,6 +1,5 @@
 package kr.kro.interface_web.controller;
 
-import kr.kro.interface_web.domain.Post;
 import kr.kro.interface_web.service.CategoryService;
 import kr.kro.interface_web.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +18,8 @@ public class PostController {
 
     @GetMapping("/post")
     public String getPost(Long postId, Model model) {
-        System.out.println("postId = " + postId);
         try {
-            Post post = postService.getPost(postId);
-            System.out.println("post = " + post);
-            model.addAttribute("post", post);
+            model.addAttribute("post", postService.getPost(postId));
             model.addAttribute("categories", categoryService.getCategories());
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,5 +55,15 @@ public class PostController {
             e.printStackTrace();
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/write")
+    public String write(Model model) {
+        try {
+            model.addAttribute("categories", categoryService.getCategories());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "write";
     }
 }
