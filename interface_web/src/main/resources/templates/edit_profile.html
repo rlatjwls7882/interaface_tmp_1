@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 수정</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css"> <style>
+        /* edit_profile.html 에만 적용될 추가/수정 CSS */
+        .profile-edit-container {
+            /* 이전에 있던 max-width를 제거하고 width를 100%로 설정 */
+            width: 100%; /* <--- 이 부분 수정 */
+            margin: 0; /* 중앙 정렬 마진 제거 */
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box; /* 패딩이 너비에 포함되도록 함 */
+        }
+
+        /* main.content-area의 패딩과 겹쳐서 안 예쁠 수 있으므로 content-area의 패딩을 0으로 하고
+           profile-edit-container에서 모든 패딩을 주는 방식으로 변경 고려.
+           일단은 profile-edit-container 자체의 패딩을 유지하고, 필요하면 content-area의 패딩을 조정할 수 있습니다.
+           현재 main.content-area는 padding: 20px; 이므로 profile-edit-container가 꽉 차게 보일 것입니다.
+        */
+
+        .profile-edit-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%; /* 부모 너비에 꽉 차도록 100%로 설정 */
+            padding: 12px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .button-group button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .button-group .submit-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .button-group .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .button-group .cancel-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .button-group .cancel-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* 아바타 업로드 스타일 */
+        .avatar-upload-group {
+            text-align: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .file-input-label:hover {
+            background-color: #e0e0e0;
+            border-color: #ccc;
+        }
+
+        .hidden-file-input {
+            display: none; /* 실제 파일 입력 필드는 숨김 */
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <button class="logo-button" onclick="location.href='/'">Interface</button>
+        <nav>
+            <ul>
+                </ul>
+        </nav>
+        <div class="user-info">
+            안녕하세요, [사용자 이름] 님!
+            <a href="login.html" class="login-btn">로그인</a>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <aside class="sidebar-left">
+            <div class="profile-widget">
+                <div class="avatar">
+                    <img src="${user.profileImageUrl ?: 'https://via.placeholder.com/120'}">
+                </div>
+                <div class="username">[사용자 이름]</div>
+                <div class="level">Lv. 10 열심회원</div>
+            </div>
+
+            <ul>
+                <li class="active"><a href="#">카페홈</a></li>
+                <li><a href="board.html">인기글</a></li>
+            </ul>
+            <div class="category-title">게시판</div>
+            <ul>
+                <li th:each="category : ${categories}">
+                    <a href="#" th:text="${category.name}">카테고리 렌더링) 서버 구현 완료</a>
+                </li>
+            </ul>
+            <div class="category-title">MY</div>
+            <ul>
+                <li><a href="#">내가 쓴 글</a></li>
+                <li><a href="#">내 댓글</a></li>
+                <li><a href="#">즐겨찾기</a></li>
+            </ul>
+        </aside>
+
+        <main class="content-area">
+            <div class="profile-edit-container">
+                <h2>회원 정보 수정</h2>
+                <form action="/updateProfile" method="post" enctype="multipart/form-data">
+                    <div class="avatar-upload-group">
+                        <div class="avatar-preview">
+                            <img id="avatar-preview-img" th:src="${user.profileImageUrl ?: 'https://via.placeholder.com/120'}">
+                        </div>
+                        <label for="avatar-upload" class="file-input-label">프로필 이미지 변경</label>
+                        <input type="file" id="avatar-upload" name="profileImage" accept="image/*" class="hidden-file-input" onchange="previewAvatar(event)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">사용자 이름</label>
+                        <input type="text" id="username" name="username" th:value="${user.username}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" name="email" th:value="${user.email}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current-password">현재 비밀번호</label>
+                        <input type="password" id="current-password" name="currentPassword" placeholder="현재 비밀번호를 입력하세요 (변경 시 필요)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password">새 비밀번호</label>
+                        <input type="password" id="new-password" name="newPassword" placeholder="새 비밀번호를 입력하세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">새 비밀번호 확인</label>
+                        <input type="password" id="confirm-password" name="confirmPassword" placeholder="새 비밀번호를 다시 입력하세요">
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="submit-btn">정보 저장</button>
+                        <button type="button" class="cancel-btn" onclick="history.back()">취소</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h3>카페 활동</h3>
+                <a href="write.html" class="board-button">새 글 작성</a>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 NAVER Café Clone. All Rights Reserved.
+    </footer>
+
+    <script>
+        function previewAvatar(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('avatar-preview-img');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>
