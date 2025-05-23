@@ -17,8 +17,19 @@ public class Category {
     private String name; // 카테고리 이름
 
     @Column(nullable = false)
-    private String description; // 카테고리 설명
+    private String content; // 카테고리 설명
 
     @OneToMany(mappedBy = "category")
     private List<Post> posts;
+
+    public Category() {}
+    public Category(String name, String content) {
+        this.name = name;
+        this.content = content;
+    }
+
+    public void update(String name, String content) {
+        this.name = name;
+        this.content = content;
+    }
 }
