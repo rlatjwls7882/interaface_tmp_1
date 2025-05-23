@@ -2,7 +2,6 @@ package kr.kro.interface_web.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -24,6 +23,17 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "posts=" + posts +
+                ", comments=" + comments +
+                ", content='" + content + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 
     public User() {}
     public User(String id, String name, String content) {

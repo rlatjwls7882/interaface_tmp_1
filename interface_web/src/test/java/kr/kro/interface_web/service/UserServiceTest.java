@@ -28,12 +28,14 @@ class UserServiceTest {
     @Test
     @Order(2)
     void createCategory() {
-        for(int i=1;i<2;i++) {
-            try {
-                categoryService.createCategory("name"+i, "content"+i);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            categoryService.createCategory("자유게시판", "");
+            categoryService.createCategory("질문과 답변", "");
+            categoryService.createCategory("스터디 모집", "");
+            categoryService.createCategory("프로젝트 공유", "");
+            categoryService.createCategory("코드 리뷰", "");
+        } catch(Exception e) {
+
         }
     }
 

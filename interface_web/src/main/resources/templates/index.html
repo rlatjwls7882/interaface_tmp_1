@@ -280,7 +280,7 @@
         </div>
         <div class="user-info">
             안녕하세요, [사용자 이름] 님!
-            <a href="login.html" class="login-btn">로그인</a>
+            <a href="login" class="login-btn">로그인</a>
         </div>
     </header>
 
@@ -303,11 +303,6 @@
                 <li th:each="category : ${categories}">
                     <a href="#" th:text="${category.name}">카테고리 렌더링) 서버 구현 완료</a>
                 </li>
-                <li><a href="#">자유게시판</a></li>
-                <li><a href="#">질문과 답변</a></li>
-                <li><a href="#">스터디 모집</a></li>
-                <li><a href="#">프로젝트 공유</a></li>
-                <li><a href="#">코드 리뷰</a></li>
             </ul>
             <div class="category-title">MY</div>
             <ul>

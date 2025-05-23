@@ -16,7 +16,7 @@ public class PostService {
     private final CategoryService categoryService;
 
     public void createPost(String title, String content, String userId, Long categoryId) throws Exception {
-        User user = userService.getUser(userId);
+        User user = userService.getUser();
         Category category = categoryService.getCategory(categoryId);
         postRepository.save(new Post(title, content, user, category));
     }

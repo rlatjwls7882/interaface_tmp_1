@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -20,8 +22,9 @@ public class UserService {
         return userRepository.existsById(id);
     }
 
-    public User getUser(String userId) {
-        return userRepository.findById(userId).orElse(null);
+    public User getUser() {
+        List<User> users = (List<User>) userRepository.findAll();
+        return users.get(users.size() - 1);
     }
 
     public void updateUser(String userId, String content) {
