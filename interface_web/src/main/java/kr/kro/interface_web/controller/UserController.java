@@ -9,4 +9,9 @@ public class UserController {
     public String editProfile() {
         return "edit_profile";
     }
+
+    @GetMapping("/hot")
+    public String hot() {
+        return "board";
+    }
 }
