@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface - 프로젝트</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Reusing and slightly adapting styles from index.html for consistency */
+        .main-visual {
+            background: linear-gradient(to right, #e0f2f7, #c1e8f3);
+            color: #333;
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .main-visual h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #007bff;
+        }
+        .main-visual p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .main-visual .cta-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .main-visual .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .content-section {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title .more-link {
+            font-size: 0.7em;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .section-title .more-link:hover {
+            text-decoration: underline;
+        }
+        .article-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .article-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .article-list li:last-child {
+            border-bottom: none;
+        }
+        .article-list li a {
+            color: #555;
+            text-decoration: none;
+            font-size: 1.05em;
+            flex-grow: 1;
+            margin-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .article-list li a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .article-list .date {
+            font-size: 0.9em;
+            color: #888;
+            flex-shrink: 0;
+        }
+
+        /* Project specific styles (similar to study, but with project-focused meta info) */
+        .project-list .project-item {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
+        }
+        .project-list .project-item:last-child {
+            border-bottom: none;
+        }
+        .project-list .project-thumbnail img {
+            width: 120px; /* Thumbnail size */
+            height: 90px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .project-list .project-details {
+            flex-grow: 1;
+        }
+        .project-list .project-details h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+        }
+        .project-list .project-details h3 a {
+            color: #333;
+            text-decoration: none;
+        }
+        .project-list .project-details h3 a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .project-list .project-snippet {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .project-list .project-meta {
+            font-size: 0.85em;
+            color: #999;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .project-list .project-meta span {
+            display: flex;
+            align-items: center;
+        }
+        .project-list .project-meta .team::before { content: '팀: '; font-weight: 500; color: #555;}
+        .project-list .project-meta .progress::before { content: '진행: '; font-weight: 500; color: #555;}
+        .project-list .project-meta .github a { color: #007bff; text-decoration: none; }
+        .project-list .project-meta .tech-stack {
+            display: inline-flex;
+            gap: 5px;
+        }
+        .project-list .project-meta .tech-stack span {
+            background-color: #e9f5ff;
+            color: #007bff;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            white-space: nowrap;
+        }
+
+        /* Sidebar styles (from index.html, ensure they are also in index.css for consistency) */
+        .widget h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .widget ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .widget li {
+            margin-bottom: 8px;
+        }
+        .widget li a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+        .widget li a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .hot-keywords ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .hot-keywords li {
+            background-color: #e9f5ff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            color: #007bff;
+            transition: background-color 0.2s;
+        }
+        .hot-keywords li a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .hot-keywords li:hover {
+            background-color: #d0e7ff;
+        }
+        .youtube-channel .youtube-thumbnail {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .youtube-channel .youtube-thumbnail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .youtube-channel p {
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+        }
+        .board-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .board-button:hover {
+            background-color: #0056b3;
+        }
+        .event-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .event-button:hover {
+            background-color: #218838;
+        }
+
+        /* To correctly highlight "프로젝트" in sidebar */
+        .sidebar-left ul li a[href="project.html"] {
+            color: #007bff; /* Highlight color */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <button class="logo-button" onclick="location.href='/'">Interface</button>
+        <nav>
+            <ul>
+                <li><a href="/">카페홈</a></li>
+                <li><a href="board.html">인기글</a></li>
+                <li><a href="study.html">스터디</a></li>
+                <li><a href="project.html">프로젝트</a></li> <li><a href="#">자료실</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="원하는 코드, 스터디를 찾아보세요">
+            <button class="search-icon-button help-icon">?</button>
+            <button class="search-icon-button dropdown-icon">▼</button>
+            <button id="searchButton" class="search-icon-button search-main-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20px" height="20px">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="user-info">
+            안녕하세요, [사용자 이름] 님!
+            <a href="login.html" class="login-btn">로그인</a>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <aside class="sidebar-left">
+            <div class="profile-widget">
+                <div class="avatar">
+                    <img src="https://via.placeholder.com/60" alt="프로필 이미지">
+                </div>
+                <div class="username">[사용자 이름]</div>
+                <div class="level">Lv. 10 열심회원</div>
+            </div>
+
+            <ul>
+                <li><a href="/">카페홈</a></li>
+                <li><a href="board.html">인기글</a></li>
+                <li><a href="study.html">스터디</a></li>
+                <li class="active"><a href="project.html">프로젝트</a></li> </ul>
+            <div class="category-title">게시판</div>
+            <ul>
+                <li><a href="#">자유게시판</a></li>
+                <li><a href="#">질문과 답변</a></li>
+                <li><a href="study.html">스터디 모집</a></li>
+                <li><a href="project.html">프로젝트 공유</a></li> <li><a href="#">코드 리뷰</a></li>
+            </ul>
+            <div class="category-title">MY</div>
+            <ul>
+                <li><a href="#">내가 쓴 글</a></li>
+                <li><a href="#">내 댓글</a></li>
+                <li><a href="#">즐겨찾기</a></li>
+            </ul>
+        </aside>
+
+        <main class="content-area">
+            <section class="main-visual">
+                <h1>Interface 프로젝트</h1>
+                <p>아이디어를 현실로 만드는 협업 프로젝트를 찾아보세요!</p>
+                <a href="#create-project" class="cta-button">새 프로젝트 등록</a>
+            </section>
+
+            <section class="content-section project-listings">
+                <h2 class="section-title">진행 중인 프로젝트 <a href="#" class="more-link">더보기 +</a></h2>
+                <div class="project-list">
+                    <div class="project-item">
+                        <div class="project-thumbnail">
+                            <img src="https://via.placeholder.com/120x90?text=Portfolio+Builder" alt="Portfolio Builder Project">
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title"><a href="#">AI 기반 개발자 포트폴리오 빌더 웹 서비스</a></h3>
+                            <p class="project-snippet">개발자의 GitHub 활동, 기술 스택 등을 분석하여 개인화된 포트폴리오를 자동으로 생성해주는 웹 서비스를 개발 중입니다. 팀원 추가 모집 중!</p>
+                            <div class="project-meta">
+                                <span class="writer">프로젝트_리더A</span>
+                                <span class="date">2025.04.10</span>
+                                <span class="team">프론트2, 백엔드2, AI1</span>
+                                <span class="progress">80% 완료</span>
+                                <span class="github"><a href="#" target="_blank">GitHub</a></span>
+                                <span class="tech-stack">
+                                    <span>#React</span>
+                                    <span>#Spring</span>
+                                    <span>#Python</span>
+                                    <span>#ChatGPT_API</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-thumbnail">
+                            <img src="https://via.placeholder.com/120x90?text=Community+App" alt="Community App Project">
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title"><a href="#">위치 기반 코딩 동아리 커뮤니티 모바일 앱</a></h3>
+                            <p class="project-snippet">사용자 위치 기반으로 주변 코딩 동아리 및 스터디를 매칭해주는 모바일 앱을 개발 중입니다. Flutter와 Firebase를 활용하고 있습니다.</p>
+                            <div class="project-meta">
+                                <span class="writer">앱_개발자B</span>
+                                <span class="date">2025.05.01</span>
+                                <span class="team">Flutter2, Firebase1</span>
+                                <span class="progress">50% 완료</span>
+                                <span class="github"><a href="#" target="_blank">GitHub</a></span>
+                                <span class="tech-stack">
+                                    <span>#Flutter</span>
+                                    <span>#Firebase</span>
+                                    <span>#Dart</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-thumbnail">
+                            <img src="https://via.placeholder.com/120x90?text=Smart+Home+IoT" alt="IoT Project">
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title"><a href="#">라즈베리파이 기반 스마트 홈 IoT 제어 시스템</a></h3>
+                            <p class="project-snippet">라즈베리파이와 센서를 연동하여 스마트 홈 환경을 구축하고 웹/앱으로 제어하는 프로젝트입니다. 하드웨어와 소프트웨어 협업에 관심 있는 분들을 찾습니다.</p>
+                            <div class="project-meta">
+                                <span class="writer">IoT_매니아C</span>
+                                <span class="date">2025.05.15</span>
+                                <span class="team">하드웨어1, 백엔드1, 프론트1</span>
+                                <span class="progress">30% 완료</span>
+                                <span class="github"><a href="#" target="_blank">GitHub</a></span>
+                                <span class="tech-stack">
+                                    <span>#RaspberryPi</span>
+                                    <span>#Python</span>
+                                    <span>#Node.js</span>
+                                    <span>#IoT</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section completed-projects">
+                <h2 class="section-title">완료된 프로젝트 <a href="#" class="more-link">더보기 +</a></h2>
+                <div class="project-list">
+                    <div class="project-item">
+                        <div class="project-thumbnail">
+                            <img src="https://via.placeholder.com/120x90?text=Old+Project" alt="Completed Project">
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title"><a href="#">온라인 코딩 챌린지 플랫폼 개발</a></h3>
+                            <p class="project-snippet">매달 진행되는 코딩 챌린지를 위한 온라인 플랫폼을 개발했습니다. 문제 제출, 채점, 랭킹 시스템 등을 구현했습니다.</p>
+                            <div class="project-meta">
+                                <span class="writer">챌린지_팀</span>
+                                <span class="date">2024.10.01 ~ 2025.01.31</span>
+                                <span class="team">백엔드2, 프론트2</span>
+                                <span class="progress">100% 완료</span>
+                                <span class="github"><a href="#" target="_blank">GitHub</a></span>
+                                <span class="tech-stack">
+                                    <span>#Django</span>
+                                    <span>#Vue.js</span>
+                                    <span>#PostgreSQL</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget activity-buttons">
+                <h3>동아리 활동</h3>
+                <a href="write.html" class="board-button">새 글 작성</a>
+                <a href="/events" class="event-button">다가오는 스터디/이벤트</a>
+            </div>
+            <div class="widget notice-board-sidebar">
+                <h3>동아리 공지</h3>
+                <ul>
+                    <li><a href="#">신입 회원 환영회 개최 안내</a></li>
+                    <li><a href="#">정기 세미나 강연자 모집</a></li>
+                    <li><a href="#">회원 전용 스터디룸 예약</a></li>
+                </ul>
+            </div>
+            <div class="widget hot-keywords">
+                <h3>인기 검색어</h3>
+                <ul>
+                    <li><a href="#">#파이썬</a></li>
+                    <li><a href="#">#AI</a></li>
+                    <li><a href="#">#프론트엔드</a></li>
+                    <li><a href="#">#백엔드</a></li>
+                    <li><a href="#">#알고리즘</a></li>
+                    <li><a href="#">#클린코드</a></li>
+                </ul>
+            </div>
+            <div class="widget youtube-channel">
+                <h3>Interface YouTube</h3>
+                <div class="youtube-thumbnail">
+                    <a href="https://www.youtube.com/channel/YOUR_YOUTUBE_CHANNEL_ID" target="_blank">
+                        <img src="https://via.placeholder.com/250x150?text=Interface+YouTube" alt="Interface YouTube Channel">
+                    </a>
+                </div>
+                <p>동아리 세미나 영상, 프로젝트 발표 등 다양한 콘텐츠를 만나보세요!</p>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        © 2025 Interface. All Rights Reserved.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+
+            function performSearch() {
+                const query = searchInput.value.trim();
+
+                if (query) {
+                    window.location.href = `/search?query=${encodeURIComponent(query)}`;
+                } else {
+                    alert('검색어를 입력해주세요.');
+                }
+            }
+
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
