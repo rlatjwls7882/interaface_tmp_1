@@ -83,7 +83,7 @@ a:hover {
 
 .header nav ul li a:hover,
 .header nav ul li.active a {
-    color: #03c75a; /* 네이버 포인트 색상 (녹색) */
+    color:  #007bff; 
 }
 
 .user-info {
@@ -95,7 +95,7 @@ a:hover {
 }
 
 .user-info .login-btn {
-    background-color: #03c75a; /* 네이버 녹색 버튼 */
+    background-color: #007bff; 
     color: white;
     padding: 8px 15px;
     border-radius: 5px;
@@ -104,7 +104,7 @@ a:hover {
 }
 
 .user-info .login-btn:hover {
-    background-color: #02b34a;
+    background-color: #1702b3;
 }
 
 /* ==================== 메인 콘텐츠 래퍼 ==================== */
