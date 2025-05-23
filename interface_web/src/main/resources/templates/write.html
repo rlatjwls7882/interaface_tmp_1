@@ -62,15 +62,15 @@
         <main class="content-area">
             <div class="write-container">
                 <h2>새 글 작성</h2>
-                <form class="write-form">
-                    <label for="board-select">게시판 선택</label>
-                    <select id="board-select" name="board">
-                        <option value="free">자유 게시판</option>
-                        <option value="notice">공지사항</option>
-                        <option value="qna">질문 게시판</option>
-                        <option value="suggestion">건의사항</option>
-                        <option value="data">자료실</option>
-                    </select>
+                <form class="write-form" action="post" method="post">
+<!--                    <label for="board-select">게시판 선택</label>-->
+<!--                    <select id="board-select" name="board">-->
+<!--                        <option value="free" >자유 게시판</option>-->
+<!--                        <option value="notice">공지사항</option>-->
+<!--                        <option value="qna">질문 게시판</option>-->
+<!--                        <option value="suggestion">건의사항</option>-->
+<!--                        <option value="data">자료실</option>-->
+<!--                    </select>-->
 
                     <label for="post-title">제목</label>
                     <input type="text" id="post-title" name="title" placeholder="제목을 입력해주세요." required>
@@ -80,7 +80,7 @@
 
                     <div class="form-actions">
                         <button type="submit" class="submit-btn">작성 완료</button>
-                        <button type="button" class="cancel-btn" onclick="location.href='index.html'">취소</button>
+                        <button type="button" class="cancel-btn" onclick="location.href='/'">취소</button>
                     </div>
                 </form>
             </div>

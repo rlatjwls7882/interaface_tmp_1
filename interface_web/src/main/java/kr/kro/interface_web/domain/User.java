@@ -22,6 +22,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts; // 게시글 목록
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     public User() {}
     public User(String id, String name, String content) {
         this.id = id;

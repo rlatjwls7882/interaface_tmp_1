@@ -1,8 +1,10 @@
 package kr.kro.interface_web.controller;
 
+import jakarta.servlet.http.HttpSession;
 import kr.kro.interface_web.service.CategoryService;
 import kr.kro.interface_web.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +30,11 @@ public class PostController {
     }
 
     @PostMapping("/post")
-    public String createPost(String title, String content, String userId, Long categoryId) {
+    public String createPost(String title, String content, HttpSession session) {
         try {
+//            String userId = session.getAttribute("userId").toString();
+            String userId = "id1";
+            Long categoryId = 1L;
             postService.createPost(title, content, userId, categoryId);
         } catch (Exception e) {
             e.printStackTrace();

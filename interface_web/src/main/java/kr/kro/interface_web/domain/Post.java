@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,6 +33,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category; // 카테고리 관계 설정
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     @Override
     public String toString() {
