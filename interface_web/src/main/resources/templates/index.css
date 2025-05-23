@@ -27,41 +27,29 @@ a:hover {
     align-items: center;
 }
 
-/* 기존 .header .logo 스타일은 제거하거나 아래처럼 주석 처리 */
-/*
-.header .logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: #1a1a1a;
-}
-*/
-
-/* 로고 버튼 스타일 추가 */
+/* 로고 버튼 스타일 */
 .logo-button {
-    /* 기존 스타일 유지 */
     font-size: 24px;
     font-weight: 700;
     color: #1a1a1a;
-    background: none; /* 배경색 제거 */
-    border: none; /* 테두리 제거 */
-    cursor: pointer; /* 마우스 커서 변경 */
-    padding: 0; /* 패딩 제거 */
-    margin: 0; /* 마진 제거 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
     transition: background-color 0.2s ease;
-    /* 아래 2줄 추가 */
-    -webkit-appearance: none; /* Safari/Chrome 기본 버튼 스타일 제거 */
-    -moz-appearance: none; /* Firefox 기본 버튼 스타일 제거 */
-    appearance: none; /* 모든 브라우저의 기본 버튼 스타일 제거 */
-    text-align: left; /* 텍스트 정렬 (필요하다면) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align: left;
 }
 
 .logo-button:hover {
-    background-color: rgba(0, 0, 0, 0.05); /* 마우스 오버 시 약간 회색 빛 추가 */
-    border-radius: 5px; /* 약간의 둥근 모서리 추가 (선택 사항) */
-    padding: 5px 10px; /* 호버 시 패딩 추가 (로고가 너무 작아 보이지 않도록) */
-    margin: -5px -10px; /* 패딩 추가에 따른 위치 조절 */
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: -5px -10px;
 }
-
 
 .header nav ul {
     list-style: none;
@@ -83,7 +71,7 @@ a:hover {
 
 .header nav ul li a:hover,
 .header nav ul li.active a {
-    color:  #007bff; 
+    color: #007bff;
 }
 
 .user-info {
@@ -95,7 +83,7 @@ a:hover {
 }
 
 .user-info .login-btn {
-    background-color: #007bff; 
+    background-color: #007bff;
     color: white;
     padding: 8px 15px;
     border-radius: 5px;
@@ -119,6 +107,7 @@ a:hover {
 }
 
 /* ==================== 좌측 메뉴바 ==================== */
+/* 이전에 sidebar-left-container에 있던 스타일을 다시 sidebar-left로 돌림 */
 .sidebar-left {
     width: 220px;
     padding: 20px;
@@ -145,7 +134,7 @@ a:hover {
     align-items: center;
     font-size: 14px;
     color: #666;
-    overflow: hidden; /* 이미지 오버플로우 방지 */
+    overflow: hidden;
 }
 .sidebar-left .profile-widget .avatar img {
     width: 100%;
@@ -207,8 +196,8 @@ a:hover {
     padding: 20px;
     background-color: #ffffff;
     display: grid;
-    grid-template-columns: 1fr; /* 단일 컬럼으로 배치 */
-    gap: 30px; /* 섹션 간 간격 */
+    grid-template-columns: 1fr;
+    gap: 30px;
 }
 
 .content-section {
@@ -273,6 +262,7 @@ a:hover {
 }
 
 /* ==================== 우측 사이드바 ==================== */
+/* 이전에 sidebar-right-container에 있던 스타일을 다시 sidebar-right로 돌림 */
 .sidebar-right {
     width: 280px;
     padding: 20px;
@@ -350,7 +340,7 @@ a:hover {
 .footer {
     width: 100%;
     padding: 20px;
-    background-color: #444; /* 약간 더 밝은 회색 */
+    background-color: #444;
     color: #eee;
     text-align: center;
     font-size: 13px;
