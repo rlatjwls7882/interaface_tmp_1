@@ -23,4 +23,12 @@ public class UserController {
     public String library() {
         return "library";
     }
+    @GetMapping("/project")
+    public String project() {
+        return "project";
+    }
+    @GetMapping("/free")
+    public String free() {
+        return "free";
+    }
 }
