@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Interface - 인기글</title> <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel ="stylesheet" href="board.css">
 </head>
 <body>
@@ -12,8 +11,7 @@
         <button class="logo-button" onclick="location.href='/'">Interface</button>
         
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="원하는 카페, 글을 찾아보세요">
-            <button class="search-icon-button help-icon">?</button>
+            <input type="text" id="searchInput" class="search-input" placeholder="원하는 코드, 스터디를 찾아보세요"> <button class="search-icon-button help-icon">?</button>
             <button class="search-icon-button dropdown-icon">▼</button>
             <button id="searchButton" class="search-icon-button search-main-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20px" height="20px">
@@ -31,33 +29,42 @@
         <div class="main-layout">
             <div class="lnb">
                 <div class="user-profile">
-                    <div class="profile-image">프로필 이미지</div>
+                    <div class="profile-image">
+                        <img src="https://via.placeholder.com/60" alt="프로필 이미지"> </div>
                     <div class="user-info">
                         <strong>[사용자 이름]</strong>
-                        <span>Lv. 10 명심회원</span>
-                    </div>
+                        <span>Lv. 10 열심회원</span> </div>
                 </div>
 
                 <div class="menu-section">
                     <ul>
                         <li><a href="/">카페홈</a></li>
-                        <li><a href="#">인기글</a></li>
-                    </ul>
+                        <li><a href="#" class="active">인기글</a></li> </ul>
                 </div>
 
                 <div class="menu-section">
                     <h3>게시판</h3>
                     <ul>
-                        <li><a href="#">카테고리 렌더링 서버 구현 완료</a></li>
-                        </ul>
+                        <li><a href="#">자유게시판</a></li> <li><a href="#">질문과 답변</a></li>
+                        <li><a href="#">스터디 모집</a></li>
+                        <li><a href="#">프로젝트 공유</a></li>
+                        <li><a href="#">코드 리뷰</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h3>MY</h3>
+                    <ul>
+                        <li><a href="#">내가 쓴 글</a></li>
+                        <li><a href="#">내 댓글</a></li>
+                        <li><a href="#">즐겨찾기</a></li>
+                    </ul>
                 </div>
             </div>
 
             <div class="main-content">
                 <div class="header">
                     <h1>인기글</h1>
-                    <p>요즘 가장 핫한 게시물들을 만나보세요.</p>
-                    <div class="sort-options">
+                    <p>요즘 'Interface' 동아리에서 가장 핫한 기술 트렌드와 정보를 만나보세요.</p> <div class="sort-options">
                         <span>인기글 기준:</span>
                         <a href="#" class="active">일간</a>
                         <a href="#">주간</a>
@@ -69,91 +76,128 @@
                 <div class="post-list">
                     <div class="post-item">
                         <div class="post-thumbnail">
-                            <img src="https://via.placeholder.com/100x100?text=Belt" alt="RRL Belt">
+                            <img src="https://via.placeholder.com/100x100?text=AI+Ethics" alt="AI 윤리 이미지">
                         </div>
                         <div class="post-details">
-                            <h3 class="post-title"><a href="#">RRL 썬센스 버클 벨트 퀄트 후기</a></h3>
-                            <p class="post-snippet">GO OUT CASUALLY DRESSED 계열에 일본어때용?</p>
+                            <h3 class="post-title"><a href="#">[심층분석] AI 윤리, 개발 단계부터 고려해야 할 핵심 요소들</a></h3>
+                            <p class="post-snippet">최근 AI 기술이 발전하면서 윤리적 문제의 중요성이 부각되고 있습니다. 개발 과정에서 어떤 점들을 고려해야 할까요?</p>
                             <div class="post-meta">
-                                <span class="views">519</span>
-                                <span class="likes">19</span>
-                                <span class="comments">5</span>
+                                <span class="writer">인터페이스_연구원</span>
+                                <span class="date">2025.05.23</span>
+                                <span class="views">1250</span>
+                                <span class="likes">88</span>
+                                <span class="comments">23</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="post-item">
                         <div class="post-thumbnail">
-                            <img src="https://via.placeholder.com/100x100?text=Doraemon" alt="Doraemon Plush">
+                            <img src="https://via.placeholder.com/100x100?text=Web3" alt="Web3 concept">
                         </div>
                         <div class="post-details">
-                            <h3 class="post-title"><a href="#">명량에몽 같이 자는 다마구치</a></h3>
-                            <p class="post-snippet">어렵지 않고 간단히 할 수 있는... 재료: 물병마개</p>
+                            <h3 class="post-title"><a href="#">Web3.0 시대, 프론트엔드 개발자에게 요구되는 새로운 역량은?</a></h3>
+                            <p class="post-snippet">블록체인, NFT 등 Web3.0 기술이 주목받는 요즘, 프론트엔드 개발자라면 어떤 기술 스택을 익혀야 할지 논의해봅시다!</p>
                             <div class="post-meta">
-                                <span class="views">123</span>
-                                <span class="likes">7</span>
-                                <span class="comments">3</span>
+                                <span class="writer">미래기술_탐험가</span>
+                                <span class="date">2025.05.23</span>
+                                <span class="views">980</span>
+                                <span class="likes">70</span>
+                                <span class="comments">18</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="post-item">
                         <div class="post-thumbnail">
-                            <img src="https://via.placeholder.com/100x100?text=Outfit" alt="Casual Outfit">
+                            <img src="https://via.placeholder.com/100x100?text=DevOps" alt="DevOps CI/CD">
                         </div>
                         <div class="post-details">
-                            <h3 class="post-title"><a href="#">아쉬아쉬 니나로든 착샷입니다 ㅋㅋ</a></h3>
-                            <p class="post-snippet">GO OUT CASUALLY DRESSED 계열에 왜케 커보이죠?</p>
+                            <h3 class="post-title"><a href="#">CI/CD 구축 A to Z: Jenkins와 GitLab CI/CD 비교</a></h3>
+                            <p class="post-snippet">자동화된 배포 파이프라인은 이제 필수! Jenkins와 GitLab CI/CD의 장단점을 비교하고 우리 프로젝트에 맞는 도구를 찾아봅시다.</p>
                             <div class="post-meta">
-                                <span class="views">519</span>
-                                <span class="likes">19</span>
-                                <span class="comments">5</span>
+                                <span class="writer">데브옵스_마스터</span>
+                                <span class="date">2025.05.22</span>
+                                <span class="views">870</span>
+                                <span class="likes">62</span>
+                                <span class="comments">15</span>
                             </div>
                         </div>
                     </div>
 
+                    <div class="section-divider">
+                        <h2>주간 베스트 코드 리뷰 <span class="more-link"><a href="#">더보기 +</a></span></h2>
+                    </div>
                     <div class="post-item">
                         <div class="post-thumbnail">
-                            <img src="https://via.placeholder.com/100x100?text=Shoes" alt="Nexlas Shoes">
+                            <img src="https://via.placeholder.com/100x100?text=Code+Review" alt="Code Review Icon">
                         </div>
                         <div class="post-details">
-                            <h3 class="post-title"><a href="#">Ww 페르트 나클라스 넥스링 주의점 ‼</a></h3>
-                            <p class="post-snippet">나끄라스체제 바로써니 나이프보단 낫습니다...</p>
+                            <h3 class="post-title"><a href="#">[리뷰 요청] 효율적인 데이터 정렬 알고리즘 피드백 받습니다.</a></h3>
+                            <p class="post-snippet">퀵 정렬과 병합 정렬을 구현했는데, 더 효율적인 개선 방안이나 코드 스타일 피드백 부탁드립니다. (GitHub 링크 포함)</p>
                             <div class="post-meta">
-                                <span class="views">444</span>
-                                <span class="likes">4</span>
-                                <span class="comments">0</span>
+                                <span class="writer">클린코더_지망</span>
+                                <span class="date">2025.05.21</span>
+                                <span class="views">620</span>
+                                <span class="likes">45</span>
+                                <span class="comments">20</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="post-item">
+                        <div class="post-thumbnail">
+                            <img src="https://via.placeholder.com/100x100?text=Python+Code" alt="Python Code">
+                        </div>
+                        <div class="post-details">
+                            <h3 class="post-title"><a href="#">[코드] 파이썬 Pandas를 활용한 데이터 전처리 스크립트</a></h3>
+                            <p class="post-snippet">실무에서 자주 사용하는 Pandas 데이터 전처리 기법들을 정리하고, 코드와 함께 공유합니다. 피드백 환영합니다!</p>
+                            <div class="post-meta">
+                                <span class="writer">데이터_엔지니어_짹</span>
+                                <span class="date">2025.05.20</span>
+                                <span class="views">710</span>
+                                <span class="likes">55</span>
+                                <span class="comments">10</span>
                             </div>
                         </div>
                     </div>
 
+
+                    <div class="section-divider">
+                        <h2>주목받는 스터디/프로젝트 <span class="more-link"><a href="#">더보기 +</a></span></h2>
+                    </div>
                     <div class="post-item">
                         <div class="post-thumbnail">
-                            </div>
+                            <img src="https://via.placeholder.com/100x100?text=스터디+모집" alt="Study Group">
+                        </div>
                         <div class="post-details">
-                            <h3 class="post-title"><a href="#">비다이아 1/12 약기 가라치즈</a></h3>
-                            <p class="post-snippet">모두모여 단심금 for everyday! 즐겁게 보낼 수 있겠어요</p>
+                            <h3 class="post-title"><a href="#">[스터디] 클린 아키텍처와 TDD 실전 스터디 (Spring/Java)</a></h3>
+                            <p class="post-snippet">클린 아키텍처와 TDD를 Spring/Java 프로젝트에 적용하며 깊이 있게 학습할 스터디원을 모집합니다. 열정 있는 분 환영!</p>
                             <div class="post-meta">
-                                <span class="views">20</span>
-                                <span class="likes">9</span>
-                                <span class="comments">0</span>
+                                <span class="writer">아키텍처_장인</span>
+                                <span class="date">2025.05.19</span>
+                                <span class="views">500</span>
+                                <span class="likes">30</span>
+                                <span class="comments">7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-item">
+                        <div class="post-thumbnail">
+                            <img src="https://via.placeholder.com/100x100?text=Project+Share" alt="Project Share">
+                        </div>
+                        <div class="post-details">
+                            <h3 class="post-title"><a href="#">[프로젝트] 동아리 챗봇 서비스 개발 과정 및 오픈 소스 공개</a></h3>
+                            <p class="post-snippet">동아리 정보와 Q&A를 제공하는 챗봇 서비스를 개발했습니다. 개발 과정과 주요 기술 스택을 공유하며, 코드도 GitHub에 공개합니다.</p>
+                            <div class="post-meta">
+                                <span class="writer">챗봇_크리에이터</span>
+                                <span class="date">2025.05.18</span>
+                                <span class="views">750</span>
+                                <span class="likes">60</span>
+                                <span class="comments">15</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="post-item">
-                        <div class="post-thumbnail">
-                            </div>
-                        <div class="post-details">
-                            <h3 class="post-title"><a href="#">블루베리는 영도의 고단함 견딜까?</a></h3>
-                            <p class="post-snippet">실무에서 벗어나지 못하는... 씁쓸하네요.</p>
-                            <div class="post-meta">
-                                <span class="views">10</span>
-                                <span class="likes">2</span>
-                                <span class="comments">0</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="pagination">
@@ -167,11 +211,69 @@
 
             <div class="right-sidebar">
                 <div class="section activity-buttons">
-                    <h3>카페 활동</h3>
-                    <button class="logo-button" onclick="location.href='/write'">새 글 작성</button>
+                    <h3>동아리 활동</h3>
+                    <button class="write-post-button" onclick="location.href='/write'">새 글 작성</button>
+                    <button class="event-button" onclick="location.href='/events'">다가오는 스터디/이벤트</button>
+                </div>
+                <div class="section notice-board">
+                    <h3>동아리 공지</h3>
+                    <ul>
+                        <li><a href="#">[필독] 2025 상반기 스터디 그룹 최종 편성 안내</a></li>
+                        <li><a href="#">[안내] 정기 오프라인 모임 장소 변경 (6월부터)</a></li>
+                        <li><a href="#">[모집] 동아리 웹사이트 개선 프로젝트 팀원 모집</a></li>
+                    </ul>
+                </div>
+                <div class="section hot-keywords">
+                    <h3>인기 검색어</h3>
+                    <ul>
+                        <li><a href="#">#파이썬</a></li>
+                        <li><a href="#">#AI</a></li>
+                        <li><a href="#">#프론트엔드</a></li>
+                        <li><a href="#">#백엔드</a></li>
+                        <li><a href="#">#알고리즘</a></li>
+                        <li><a href="#">#클린코드</a></li>
+                    </ul>
+                </div>
+                <div class="section youtube-channel">
+                    <h3>Interface YouTube</h3>
+                    <div class="youtube-thumbnail">
+                        <a href="https://www.youtube.com/channel/YOUR_YOUTUBE_CHANNEL_ID" target="_blank">
+                            <img src="https://via.placeholder.com/250x150?text=Interface+YouTube" alt="Interface YouTube Channel">
+                        </a>
+                    </div>
+                    <p>동아리 세미나 영상, 프로젝트 발표 등 다양한 콘텐츠를 만나보세요!</p>
                 </div>
             </div>
         </div>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+
+            function performSearch() {
+                const query = searchInput.value.trim(); // 검색어 앞뒤 공백 제거
+
+                if (query) {
+                    // 실제 서버로 검색 요청을 보냅니다.
+                    // 이 예시에서는 쿼리 파라미터로 검색 페이지로 이동합니다.
+                    window.location.href = `/search?query=${encodeURIComponent(query)}`;
+                } else {
+                    alert('검색어를 입력해주세요.');
+                }
+            }
+
+            // 검색 버튼 클릭 이벤트
+            searchButton.addEventListener('click', performSearch);
+
+            // 검색 입력창에서 Enter 키 누를 시 검색
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
