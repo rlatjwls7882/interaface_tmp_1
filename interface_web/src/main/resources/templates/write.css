@@ -66,7 +66,7 @@
         }
 
         .user-info .login-btn {
-            background-color: #03c75a;
+            background-color: #007bff;
             color: white;
             padding: 8px 15px;
             border-radius: 5px;
@@ -75,7 +75,7 @@
         }
 
         .user-info .login-btn:hover {
-            background-color: #02b34a;
+            background-color: #160470;
         }
 
         /* ==================== 메인 콘텐츠 래퍼 (index.html, post.html과 동일) ==================== */
@@ -244,11 +244,11 @@
         }
 
         .write-form .submit-btn {
-            background-color: #03c75a;
+            background-color: #007bff;
             color: white;
         }
         .write-form .submit-btn:hover {
-            background-color: #02b34a;
+            background-color: #160470;
         }
 
         .write-form .cancel-btn {
