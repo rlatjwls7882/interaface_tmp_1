@@ -1,0 +1,156 @@
+
+        /* ==================== 전체 페이지 및 배경 스타일 ==================== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            /* 배경 그라데이션: 연한 하늘색 - 흰색 - 연한 하늘색 */
+            background: linear-gradient(135deg, #e0f2f7 0%, #ffffff 50%, #e0f2f7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ==================== 배경에 'I'와 'F' 글자 장식 추가 (색상 재조정) ==================== */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 250px;
+            z-index: -1;
+            pointer-events: none;
+            line-height: 0.8;
+
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            /* 글자 그림자 색상: 너무 튀지 않게 조절 */
+            text-shadow: 
+                2px 2px 5px rgba(0, 0, 0, 0.1), /* 그림자 투명도 살짝 낮춤 */
+                4px 4px 10px rgba(0, 0, 0, 0.05); /* 그림자 투명도 살짝 낮춤 */
+        }
+
+        body::before {
+            content: 'I';
+            top: 30%;
+            left: 25%;
+            transform: translate(-50%, -50%) rotate(-10deg);
+            /* 'I' 글자 배경 그라데이션: 부드러운 푸른 파스텔 톤 */
+            background-image: linear-gradient(to bottom right, #BFEFFF, #93D5ED); /* LightSkyBlue 계열로 더 부드럽게 */
+        }
+
+        body::after {
+            content: 'F';
+            bottom: 30%;
+            right: 25%;
+            transform: translate(50%, 50%) rotate(5deg);
+            /* 'F' 글자 배경 그라데이션: 부드러운 푸른 파스텔 톤 */
+            background-image: linear-gradient(to top left, #A0D5E7, #80BED7); /* CadetBlue 계열로 더 차분하게 */
+        }
+
+        /* ==================== 로그인 컨테이너 (흰색 카드) 스타일 ==================== */
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==================== 제목 (로그인) 스타일 ==================== */
+        .login-container h2 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        /* ==================== 입력 필드 그룹 및 입력 칸 스타일 ==================== */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-group input::placeholder {
+            color: #b0b0b0;
+        }
+
+        /* ==================== 로그인 정보 기억하기 체크박스 스타일 ==================== */
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .remember-me input[type="checkbox"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            accent-color: #87CEEB;
+            cursor: pointer;
+        }
+
+        /* ==================== 로그인 버튼 스타일 ==================== */
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            /* 그라데이션 버튼 */
+            background: linear-gradient(to right, #87CEEB, #ffffff);
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        /* ==================== 비밀번호 찾기 링크 스타일 ==================== */
+        .forgot-password {
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }

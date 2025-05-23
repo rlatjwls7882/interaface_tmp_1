@@ -1,0 +1,394 @@
+
+        /* (이전과 동일한 CSS 스타일) */
+        /* ==================== 전역 스타일 (index.html과 동일) ==================== */
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================== 헤더 (index.html과 동일) ==================== */
+        .header {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .header nav ul li {
+            margin-left: 25px;
+        }
+
+        .header nav ul li a {
+            color: #555;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .header nav ul li a:hover,
+        .header nav ul li.active a {
+            color: #03c75a;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info .login-btn {
+            background-color: #03c75a;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .user-info .login-btn:hover {
+            background-color: #02b34a;
+        }
+
+        /* ==================== 메인 콘텐츠 래퍼 (index.html과 동일) ==================== */
+        .main-wrapper {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* ==================== 좌측 메뉴바 (index.html과 동일) ==================== */
+        .sidebar-left {
+            width: 220px;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+        }
+
+        .sidebar-left .profile-widget {
+            background-color: #e6f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .sidebar-left .profile-widget .avatar {
+            width: 60px;
+            height: 60px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            overflow: hidden;
+        }
+        .sidebar-left .profile-widget .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar-left .profile-widget .username {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-left .profile-widget .level {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .sidebar-left ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-left ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-left ul li a {
+            color: #555;
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-left ul li a:hover,
+        .sidebar-left ul li.active a {
+            background-color: #e6f7ff;
+            color: #007bff;
+        }
+
+        .sidebar-left .category-title {
+            font-size: 14px;
+            color: #888;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            padding: 0 10px;
+            font-weight: 500;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        /* ==================== 중앙 콘텐츠 영역 (post-specific) ==================== */
+        .content-area {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffffff;
+            display: flex; /* Flexbox로 변경 */
+            flex-direction: column; /* 세로 방향으로 아이템 배치 */
+            gap: 20px; /* 섹션 간 간격 */
+        }
+
+        .post-container {
+            background-color: #fefefe;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 25px;
+        }
+
+        .post-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .post-meta {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .post-meta .author {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .post-content {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            min-height: 200px; /* 최소 높이 설정 */
+        }
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .comment-section {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .comment-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .comment-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment-item {
+            background-color: #fcfcfc;
+            border: 1px solid #f0f0f0;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .comment-item .comment-meta {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .comment-item .comment-meta .comment-date {
+            font-weight: 400;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .comment-item p {
+            margin: 0;
+            color: #666;
+        }
+
+        .comment-form textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .comment-form button {
+            background-color: #03c75a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .comment-form button:hover {
+            background-color: #02b34a;
+        }
+
+        /* ==================== 우측 사이드바 (index.html과 동일) ==================== */
+        .sidebar-right {
+            width: 280px;
+            padding: 20px;
+            border-left: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .widget {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .widget h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .widget ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .widget ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 14px;
+        }
+
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+
+        .widget ul li a {
+            color: #555;
+            transition: color 0.2s ease;
+        }
+
+        .widget ul li a:hover {
+            color: #007bff;
+        }
+
+        .widget .board-button {
+            display: block;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px auto 0;
+            background-color: #e6f7ff;
+            color: #007bff;
+            border: 1px solid #cceeff;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .widget .board-button:hover {
+            background-color: #d1edff;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        /* ==================== 푸터 (index.html과 동일) ==================== */
+        .footer {
+            width: 100%;
+            padding: 20px;
+            background-color: #444;
+            color: #eee;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 30px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
