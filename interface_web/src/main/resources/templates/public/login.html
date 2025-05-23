@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form id="loginForm" method="POST">
+            <div class="form-group">
+                <label for="email">아이디 / 이메일</label>
+                <input type="text" id="email" name="email" placeholder="아이디 또는 이메일을 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+            </div>
+            <div class="remember-me">
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+                <label for="rememberMe">아이디 저장</label>
+            </div>
+            <button type="submit" class="login-button">로그인</button>
+        </form>
+        
+        <p class="forgot-password">
+            <a href="/forgot-password">비밀번호를 잊으셨나요?</a>
+        </p>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        function toggleFilledClass(input) {
+            if (input.value.trim() !== "") {
+                input.classList.add("filled");
+            } else {
+                input.classList.remove("filled");
+            }
+        }
+
+        emailInput.addEventListener("input", () => toggleFilledClass(emailInput));
+        passwordInput.addEventListener("input", () => toggleFilledClass(passwordInput));
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const text = await res.text();
+                let data;
+
+                try {
+                    data = JSON.parse(text);
+                } catch (err) {
+                    throw new Error('서버 응답이 유효하지 않습니다:\n' + text);
+                }
+
+                if (res.ok && data.success) {
+                    document.body.innerHTML = `<h1 style="text-align:center; font-family:sans-serif;">✅ 로그인 성공!</h1>`;
+                } else {
+                    alert(`❌ 로그인 실패: ${data.message || '알 수 없는 오류'}`);
+                }
+            } catch (err) {
+                console.error('🚨 오류 발생:', err.message);
+                alert('서버 오류: ' + err.message);
+            }
+        });
+    </script>
+</body>
+</html>
