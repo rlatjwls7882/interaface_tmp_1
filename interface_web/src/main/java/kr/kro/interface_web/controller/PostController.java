@@ -32,7 +32,7 @@ public class PostController {
     @PostMapping("/post")
     public String createPost(String title, String content, HttpSession session) {
         try {
-//            String userId = session.getAttribute("userId").toString();
+//            String userId = session.getAttribute("id").toString();
             String userId = "id1";
             Long categoryId = 1L;
             postService.createPost(title, content, userId, categoryId);
