@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<aside class="sidebar-left" th:fragment="sidebarLeft">
+    <div class="profile-widget">
+        <div class="avatar">
+            <img src="https://via.placeholder.com/60" alt="프로필 이미지">
+        </div>
+        <div class="username">[사용자 이름]</div>
+        <div class="level">Lv. 10 열심회원</div>
+    </div>
+
+    <ul>
+        <li class="active"><a href="/">카페홈</a></li>
+        <li class="active"><a href="board.html">인기글</a></li>
+        <li><a href="#">내소식</a></li>
+        <li><a href="#">채팅</a></li>
+    </ul>
+    <div class="category-title">게시판</div>
+    <ul>
+        <li th:each="category : ${categories}">
+            <a href="#" th:text="${category.name}">카테고리 렌더링) 서버 구현 완료</a>
+        </li>
+    </ul>
+    <div class="category-title">MY</div>
+    <ul>
+        <li><a href="#">내가 쓴 글</a></li>
+        <li><a href="#">내 댓글</a></li>
+        <li><a href="#">즐겨찾기</a></li>
+    </ul>
+</aside>
+</html>

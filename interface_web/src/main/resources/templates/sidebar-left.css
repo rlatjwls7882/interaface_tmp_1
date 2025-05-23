@@ -1,0 +1,83 @@
+/* ==================== 좌측 메뉴바 ==================== */
+.sidebar-left {
+    width: 220px;
+    padding: 20px;
+    border-right: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+}
+
+.sidebar-left .profile-widget {
+    background-color: #e6f7ff; /* 파스텔 블루 배경 */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.sidebar-left .profile-widget .avatar {
+    width: 60px;
+    height: 60px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+    overflow: hidden; /* 이미지 오버플로우 방지 */
+}
+
+.sidebar-left .profile-widget .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-left .profile-widget .username {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.sidebar-left .profile-widget .level {
+    font-size: 13px;
+    color: #666;
+}
+
+.sidebar-left ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-left ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar-left ul li a {
+    color: #555;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-left ul li a:hover,
+.sidebar-left ul li.active a {
+    background-color: #e6f7ff;
+    color: #007bff;
+}
+
+.sidebar-left .category-title {
+    font-size: 14px;
+    color: #888;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-weight: 500;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
