@@ -6,6 +6,7 @@ import kr.kro.interface_web.domain.User;
 import kr.kro.interface_web.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +31,7 @@ public class PostService {
         postRepository.save(post);
     }
 
+    @Transactional
     public void deletePost(Long postId) throws Exception {
         Post post = postRepository.findById(postId).orElse(null);
         postRepository.delete(post);

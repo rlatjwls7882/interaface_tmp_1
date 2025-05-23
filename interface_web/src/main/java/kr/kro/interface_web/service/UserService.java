@@ -4,6 +4,7 @@ import kr.kro.interface_web.domain.User;
 import kr.kro.interface_web.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);
     }
